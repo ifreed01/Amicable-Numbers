@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Amicable Numbers</title>
+</head>
+
+<body>
+	<form name="inputNumbers">
+	Enter first number <input type = "text"
+					name="numOne" id="numOne">
+
+	<br/>
+		
+	Enter second number <input type = "text"
+					name="numTwo" id="numTwo">
+	
+	<br/>
+		
+	<input type = "button" onclick="printNumbers()" value ="Go"
+			id= "show-numbers">
+	
+	<div id="numbers">&nbsp;</div>
+	</form>
+	
+	<script language="javascript">
+	function printNumbers()
+	{		
+		//document.getElementById("show-numbers").onclick = printNumbers() 
+			var numOne = document.inputNumbers.numOne.value;
+			result = "<br/> Number One: " + numOne + "<br />";
+		
+			var numTwo = document.inputNumbers.numTwo.value;
+			result += "<br/> Number Two: " + numTwo + "<br />";		
+		
+			numOneFactors = getFactors(numOne);
+			numTwoFactors = getFactors(numTwo);
+			//document.write(numOneFactors);
+			//document.write(numTwoFactors);
+		
+			numOneSum = addArray(numOneFactors);
+			numTwoSum = addArray(numTwoFactors);
+			//document.write(numOneSum);
+			//document.write(numTwoSum);
+		
+			if ((numOneSum == numTwo) && (numTwoSum == numOne)) {
+				result += "<br/> These numbers are amicable!";
+			} else {
+				result += "<br/> These numbers are not amicable!";
+			}
+		
+			document.getElementById("numbers").innerHTML = result;
+	}
+
+	
+	function isFactor(number, posFactor)
+	{
+		var factor = number / posFactor;
+		//alert("is this a factor: " + Number.isInteger(factor));
+		return(Number.isInteger(factor));
+	}
+	
+	//isFactor(30,6);
+	//isFactor(23,2);
+	
+	var testArray = [433, 123, 19];
+	function showArray(array)
+	{
+		document.getElementById("numbers").innerHTML = array;
+	}
+	
+	//showArray(testArray);
+	
+	function addArray(array)
+	{
+		var sum = 0;
+		for(var i=0; i<array.length; i++){
+			sum += parseInt(array[i]);
+		}
+		//document.getElementById("numbers").innerHTML = sum;
+		return sum;
+	}
+		
+	//addArray(testArray);
+	
+	function getFactors(number)
+	{
+		var factors = [];
+		for(var i=0; i<number; i++){
+			if ((isFactor(number, i))){
+				factors.push(i);
+			}
+		}
+		document.getElementById("numbers").innerHTML = factors;
+		return factors;
+	}
+
+	//getFactors(20);
+</script>
+	
+</body>
+</html>
